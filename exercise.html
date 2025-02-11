@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME !!!</title>
+</head>
+<body>
+    <script>
+        const div = document.createElement("div");
+        div.style.width = "50vw";
+        div.style.height = "50vh";
+        div.style.backgroundColor = "red";
+        document.body.appendChild(div);
+
+        div.innerHTML = `<div id="div1"></div>`;
+        const div1 = document.getElementById("div1");
+        div1.style.width = "40vw";
+        div1.style.height = "40vh";
+        div1.style.backgroundColor = "yellow";
+        // div2.style.float = "left";
+
+        div1.innerHTML = `<div id="div2"></div>`;
+        const div2 = document.getElementById("div2");
+        div2.style.width = "30vw";
+        div2.style.height = "30vh";
+        div2.style.backgroundColor = "lime";
+        div2.style.float = "left";
+
+        div2.innerHTML = `<img src="cat1.jpg" alt="고양이 사진">`;
+
+    </script>
+</body>
+</html>

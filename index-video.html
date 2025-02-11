@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Web</title>
+        <style>
+            select {display: block;}
+        </style>
+    </head>
+    <body style="font-size: 50px; font-weight: bolder; color: rebeccapurple;">
+        <div id="div"></div>
+        <div id="div1" style="height:30%;"></div>
+        <div id="div2"></div>
+<!--
+        <select>
+            <option value="아이브(IVE) - 해야">아이브(IVE) - 해야</option>
+            <option value="아이유-드라마">아이유-드라마</option>
+            <option value="아이유-어느 60대 노부부 이야기">아이유-어느 60대 노부부 이야기</option>
+            <option value="아이유-잊혀진 계절">아이유-잊혀진 계절</option>
+            <option value="장미여관 - 퇴근하겠습니다">장미여관 - 퇴근하겠습니다</option>
+        </select>
+-->
+
+        <script>
+            const div = document.getElementById("div");
+            const div1 = document.getElementById("div1");
+            const div2 = document.getElementById("div2");
+            const imgE1 = document.createElement("img");
+            const video = document.createElement("video");
+            const br = document.createElement("br");
+
+            function updateClock(){
+                const date = new Date();
+                const month = date.getMonth()+1;
+                const day = date.getDate();
+                const hour = date.getHours();
+                const minutes = date.getMinutes();
+                const seconds = date.getSeconds();
+                const dateFormat = `${date.getFullYear()}-${month<10? "0"+month : month}-${day<10? "0"+day : day} ${hour<10? "0"+hour : hour}:${minutes<10? "0"+minutes : minutes}:${seconds<10? "0"+seconds : seconds}`;
+                        
+                div.innerText = dateFormat;    
+            }
+            updateClock();
+            setInterval(updateClock,1000);
+            
+            for(let i=1; i<10000; i++){
+                setTimeout(() => { 
+                    i %= 5;
+                    if (i<1) i+=1;
+                    /*
+                    const str = `cat${i}.jpg`;
+                    console.log(str);
+                    imgE1.src = str;
+                    imgE1.alt = '고양이 그림들';
+                    document.body.appendChild(imgE1);
+                    */
+                    div2.innerHTML = `<img src="./cat${i}.jpg" alt='고양이 그림들'>`;
+                },i*2000);
+            }            
+            
+            /*
+                video.src = "아이브(IVE) - 해야.MP4";
+                video.autoplay = "on";
+                video.controls = "on";
+                video.loop = "on";
+                document.body.appendChild(video);
+                */
+            //div2.innerHTML = "<div>아이브(IVE) - 해야 From YouTube</div><video src='아이유-드라마.MP4' autoplay controls loop></video>";
+            //div2.innerHTML = "<video src='아이브(IVE) - 해야.MP4' controls autoplay loop></video>";
+            
+           
+            //div1.innerHTML = `<div>From YouTube</div><video src='${songs[j]}.MP4' autoplay controls></video>`;
+            const songs = ["아이유-드라마.MP4","아이유-어느 60대 노부부 이야기.MP4","아이유-잊혀진 계절.MP4","장미여관 - 퇴근하겠습니다.MP4","아이브(IVE) - 해야.MP4","황가람with김소라-나는 반딧불.mp4"];
+            const select = document.createElement("select");
+                        
+            songs.forEach(item => {
+                const option = document.createElement("option");
+                option.value = item;
+                option.textContent = item;
+                select.appendChild(option);
+            });
+            
+            div1.appendChild(select);
+
+            /*           
+            select.addEventListener("change",(event)=>{
+                video.src = event.target.value;
+                video.autoplay = "on";
+                video.controls = "on";
+                video.loop = "on";
+                div1.appendChild(video);
+            });
+            */
+            
+            function playSong(target){
+                let i = songs.indexOf(target);
+                video.src = target;
+                video.autoplay = "on";
+                video.controls = "on";
+                
+                div1.appendChild(video);   
+
+                video.onended = ()=>{
+                    if ((i+1)==songs.length) playSong(songs[0]);
+                    else playSong(songs[i+1]);
+                } ;            
+            }           
+
+            playSong(songs[0]);
+
+            select.addEventListener("change",(event)=>{
+                playSong(event.target.value);
+                //video.src = event.target.value;
+                //video.controls = "on";
+                //video.loop = "on";
+                //div1.appendChild(video);
+            });
+            
+        </script>
+    </body>
+</html>
