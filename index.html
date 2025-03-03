@@ -38,7 +38,7 @@
             justify-content:center;
             background-color: beige;
             width: 100vw;
-            height: 50vh;
+            height: 25vh;
             margin-top: 5px;
         }
         .flex5 {
@@ -63,33 +63,38 @@
     <div id="timebox"></div>
     <div class="flex1">
         <div class="flex2">
-            <img src="cat1.jpg" alt="고양이 사진">
+            <img src="cat1.jpg" width="250" height="250" alt="고양이 사진">
         </div>
         <div class="flex3">
-            <img src="cat2.jpg" alt="고양이 사진">            
+            <img src="cat2.jpg" width="250" height="250" alt="고양이 사진">            
         </div>
         <div class="flex2">
-            <img src="cat3.jpg" alt="고양이 사진">            
+            <img src="cat3.jpg" width="250" height="250" alt="고양이 사진">            
         </div>
         <div class="flex3">
-            <img src="cat4.jpg" alt="고양이 사진">            
+            <img src="cat4.jpg" width="250" height="250" alt="고양이 사진">            
         </div>
     </div>
     <div class="flex4">
         <div class="flex5">
-            <img src="product1.jpeg" alt="오렌지 사진">
+            <img src="product1.jpeg"width="250" height="250"  alt="오렌지 사진">
         </div>
         <div class="flex6">
-            <img src="product2.png" alt="계란프라이 사진">            
+            <img src="product2.png" width="250" height="250" alt="계란프라이 사진">            
         </div>
-        <!-- <div class="flex5">
-            <img src="product3.jpg" alt="카카오 사진">            
-        </div> -->
+        <div class="flex5">
+            <img src="product3.jpg" width="250" height="250" alt="카카오 사진">            
+        </div>
         <div class="flex6">
-            <img src="product4.jpg" alt="신비로운 사진">            
+            <img src="product4.jpg" width="250" height="250" alt="신비로운 사진">            
         </div>
     </div>    
     <script>
+        function twoDigit(x) {
+            if (x<10) return "0"+x ;
+            return x;
+        }
+
         function timebox(){
             const now = new Date();
             const year = now.getFullYear();
@@ -98,9 +103,10 @@
             const si = now.getHours();
             const bun = now.getMinutes();
             const cho = now.getSeconds();
+            const yoil = now.getDay();
+            const yoilkr = ["월","화","수","목","금","토"];
             
-            const jikm = `${year}-${month<10?"0"+month:month}-${day<10?"0"+day:day}  ${si<10?"0"+si:si}:${bun<10?"0"+bun:bun}:${cho<10?"0"+cho:cho}`;
-
+            const jikm = `${year}-${twoDigit(month)}-${twoDigit(day)} ${yoilkr[yoil%7]}요일 ${twoDigit(si)}:${twoDigit(bun)}:${twoDigit(cho)}`;
             const div = document.getElementById("timebox");
             div.innerText = jikm;
         }
