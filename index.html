@@ -104,7 +104,7 @@
             const bun = now.getMinutes();
             const cho = now.getSeconds();
             const yoil = now.getDay();
-            const yoilkr = ["월","화","수","목","금","토"];
+            const yoilkr = ["일","월","화","수","목","금","토"];
             
             const jikm = `${year}-${twoDigit(month)}-${twoDigit(day)} ${yoilkr[yoil%7]}요일 ${twoDigit(si)}:${twoDigit(bun)}:${twoDigit(cho)}`;
             const div = document.getElementById("timebox");
